@@ -5,7 +5,7 @@ if ("geolocation" in navigator) {
     const lat = position.coords.latitude;
     const long = position.coords.longitude;
     document.getElementById("latitude").textContent=lat;
-    document.getElementById("longitude").textContent=lat;
+    document.getElementById("longitude").textContent=long;
 
 
 
