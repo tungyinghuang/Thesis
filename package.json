@@ -1,0 +1,27 @@
+{
+  "name": "thesis",
+  "version": "1.0.0",
+  "description": "This is a prototype of online confession room ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tungyinghuang/Thesis.git"
+  },
+  "keywords": [
+    "data",
+    "geolocation",
+    "confession"
+  ],
+  "author": "Tung-Ying Huang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tungyinghuang/Thesis/issues"
+  },
+  "homepage": "https://github.com/tungyinghuang/Thesis#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
