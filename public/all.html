@@ -9,7 +9,13 @@
 <body>
   <h1>Online Confession Room</h1>
   <script >
-    fetch("/api")
+    getData();
+    async function getData(){
+      const response = await fetch('/api');
+      const data = await response.json();
+      console.log(data);
+
+    };
 
   </script>
 </body>
