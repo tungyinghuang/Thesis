@@ -15,7 +15,7 @@ app.get('/api', (request, response) =>{
       response.end();
       return;
     }
-    console.log("I post a response! ");
+    console.log("I update the responses! ");
     response.json(data);
   })
 })
