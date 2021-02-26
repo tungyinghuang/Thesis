@@ -8,6 +8,10 @@
 </head>
 <body>
   <h1>Online Confession Room</h1>
+  <form action='/'>
+    <input type="submit" value="Post a new confession" />
+  </form>
+
   <script >
     getData();
     async function getData(){
@@ -28,7 +32,6 @@
 
         root.append(name, distance, date, confession)
         document.body.append(root);
-
 
       }
     };

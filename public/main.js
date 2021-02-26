@@ -1,4 +1,4 @@
-//get geolocation
+//submit
 let lat, long;
 document.getElementById('submit').addEventListener('click', async event => {
   const name = document.getElementById("name").value
@@ -14,7 +14,7 @@ document.getElementById('submit').addEventListener('click', async event => {
   const json = await response.json();
   console.log(json)
 })
-
+//get geolocation
 document.getElementById('geolocate').addEventListener('click', async event => {
   if ("geolocation" in navigator) {
     console.log("geolocation availabel");
