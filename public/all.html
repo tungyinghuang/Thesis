@@ -14,18 +14,20 @@
 
 
   <script >
-    let lat, long, getdistance;
-    getData();
+    let lat, long, timestamp, getdistance, gettime;
+
 
     if('geolocation' in navigator) {
       navigator.geolocation.watchPosition((position) =>{
         lat = position.coords.latitude;
         long = position.coords.longitude;
+        getData();
+        timestamp = Date.now()
+
       //  console.log(lat,long)
       });
     } else {
       console.log("geolocation not availabel")
-      /* geolocation IS NOT available */
     }
 
 
@@ -33,26 +35,27 @@
       const response = await fetch('/api');
       const data = await response.json();
 
-
-      console.log(lat, long)
-
       for(item of data){
-        const root = document.createElement('div')
-        const name = document.createElement('div')
-        name.textContent = `name: ${item.name}`
-        const distance = document.createElement('div')
         getdistance = getDistanceFromLatLonInKm(lat, long,`${item.lat}`,`${item.long}`).toFixed(2);
-        distance.textContent = "distance:" + getdistance +"Km"
-        const date = document.createElement('div')
-        const dateString = new Date(item.timestamp).toLocaleString()
-        date.textContent = dateString
-        const confession = document.createElement('div')
-        confession.textContent = `confession:${item.confess}`
+        gettime = timeDifference(timestamp, `${item.timestamp}`)
 
-        root.append(name, distance, date, confession)
-        document.body.append(root);
+        if (  getdistance<=1 &&gettime<=1){
+          const root = document.createElement('div')
+          const name = document.createElement('div')
+          name.textContent = `name: ${item.name}`
+          const distance = document.createElement('div')
+          distance.textContent = "distance:" + getdistance +"Km"
+          const date = document.createElement('div')
+          const dateString = new Date(item.timestamp).toLocaleString()
+          date.textContent = dateString
+          const confession = document.createElement('div')
+          confession.textContent = `confession:${item.confess}`
+
+          root.append(name, distance, date, confession)
+          document.body.append(root);
+
       }
-        console.log(lat,long)
+    }
 
     };
     //calculate distance
@@ -74,6 +77,14 @@
       function deg2rad(deg) {
         return deg * (Math.PI/180)
       }
+    //calculate timeout
+
+    function timeDifference(timestamp1, timestamp2) {
+      var difference = timestamp1 - timestamp2;
+      var daysDifference = Math.floor(difference/1000/60/60/24);
+
+    return daysDifference;
+}
 
   </script>
 </body>

@@ -14,7 +14,6 @@ const database = new Datastore('database.db');
 database.loadDatabase();
 
 app.get('/api', (request, response) =>{
-  //database.find({}, (err, data) =>{
   database.find({}).sort({timestamp: -1 }).exec(function (err, data) {
     if(err){
       response.end();
@@ -30,10 +29,7 @@ app.post('/api', (request, response) =>{
   const data = request.body
   const timestamp = Date.now()
   data.timestamp = timestamp;
-  // database.find({}).sort({timestamp: -1 }, (err, data) =>{
-  // response.json(data);
-  //
-  // })
+  
   database.insert(data);
   response.json(data);
 
