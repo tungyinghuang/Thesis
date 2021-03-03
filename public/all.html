@@ -9,21 +9,19 @@
 <body>
   <h1>Online Confession Room</h1>
   <form action='/'>
-    <input type="submit" value="Post a new confession" />
+    <input id="repost"  type="submit" value="Post a new confession" />
   </form>
 
 
   <script >
     let lat, long, timestamp, getdistance, gettime;
 
-
     if('geolocation' in navigator) {
       navigator.geolocation.watchPosition((position) =>{
         lat = position.coords.latitude;
         long = position.coords.longitude;
-        getData();
         timestamp = Date.now()
-
+        getData();
       //  console.log(lat,long)
       });
     } else {
@@ -39,7 +37,9 @@
         getdistance = getDistanceFromLatLonInKm(lat, long,`${item.lat}`,`${item.long}`).toFixed(2);
         gettime = timeDifference(timestamp, `${item.timestamp}`)
 
-        if (  getdistance<=1 &&gettime<=1){
+        //console.log(`${item.timestamp}`,gettime)
+
+        if ( getdistance<=1 && gettime<=24){
           const root = document.createElement('div')
           const name = document.createElement('div')
           name.textContent = `name: ${item.name}`
@@ -53,11 +53,14 @@
 
           root.append(name, distance, date, confession)
           document.body.append(root);
-
+        }
       }
-    }
 
     };
+
+
+
+
     //calculate distance
 
        function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
@@ -81,9 +84,9 @@
 
     function timeDifference(timestamp1, timestamp2) {
       var difference = timestamp1 - timestamp2;
-      var daysDifference = Math.floor(difference/1000/60/60/24);
+      var hoursDifference = Math.floor(difference/1000/60/60);
 
-    return daysDifference;
+    return hoursDifference;
 }
 
   </script>
