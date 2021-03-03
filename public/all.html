@@ -36,7 +36,6 @@
       for(item of data){
         getdistance = getDistanceFromLatLonInKm(lat, long,`${item.lat}`,`${item.long}`).toFixed(2);
         gettime = timeDifference(timestamp, `${item.timestamp}`)
-
         //console.log(`${item.timestamp}`,gettime)
 
         if ( getdistance<=1 && gettime<=24){
@@ -52,11 +51,14 @@
           confession.textContent = `confession:${item.confess}`
 
           root.append(name, distance, date, confession)
+          root.setAttribute("id", "post")
           document.body.append(root);
         }
       }
 
     };
+
+
 
 
 
