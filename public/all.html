@@ -8,16 +8,17 @@
 </head>
 <body>
   <h1>Online Confession Room</h1>
-  <form action='/'>
-    <input id="repost"  type="submit" value="Post a new confession" />
-  </form>
+
+  <a href="/"><button>Make a new Confession</button></a>
+  <div id=wrapper>
+  </div>
 
 
   <script >
     let lat, long, timestamp, getdistance, gettime;
 
     if('geolocation' in navigator) {
-      navigator.geolocation.watchPosition((position) =>{
+      navigator.geolocation.getCurrentPosition((position) =>{
         lat = position.coords.latitude;
         long = position.coords.longitude;
         timestamp = Date.now()
@@ -52,11 +53,14 @@
 
           root.append(name, distance, date, confession)
           root.setAttribute("id", "post")
-          document.body.append(root);
+
+          document.getElementById('wrapper').append(root);
+          console.log('read')
+
         }
       }
-
     };
+
 
 
 
