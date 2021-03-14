@@ -9,23 +9,76 @@
 
 <body>
   <div id="root"></div>
-  <h1>Information Form</h1>
-  <p>latitude: <span id="latitude"></span></p>
-  <p>longitude: <span id="longitude"></span></p>
-  <button id="geolocate">Get Your Location</button>
-  <br>
-  <label for="name">Your name</label>
-  <br>
-  <input id="name" type="text" />
-  <br>
-  <label for="confession">I want to confess...</label>
-  <br>
-  <input id="confession" type="text" maxlength="1000" style="width: 300px; height:300px" />
-  <form action='all.html'>
-    <input type="submit" id="submit" value="Submit!"/>
-  </form>
+  <div class='container' data-0='transform:translateX(0%);'data-1000='transform:translateX(-300%)'>
+    <section id='sec-1'>
+      <div class='content'>
+        <div class='title' title="CONFIDING">CONFIDING</div>
+        <div class='title' title="CONFIDING">CONFIDING</div>
+        <div class='title' title="CONFIDING">CONFIDING</div>
+      </div>
+
+    </section>
+    <section>
+      <div class='content' id='sec-2'>
+        <h1>What's CONFIDING?</h1>
+        <p>We all have secrets and desire to share.
+          COFIDING is a platform let you share the stories to people physically around you in limited time. It's a outlet of your secret,
+          emotion and experience with anonymous listener around you. Your post will be removed after a day to let your secret remain secret.</p>
+        <br>
+        <p>CONFIDING helps you reduce pressure by sharing ephemeral content to a group of people, because it limits the amount of damage an ill-thought-out post can do. Also, limited distance gives a live feed of what's going on around you.</p>
+        <br>
+        <p> You need to create a new post to see the posts around you.</p>
+      </div>
+
+
+    </section>
+    <section>
+      <div class='content' id='sec-3'>
+        <h1>Code of conduct</h1>
+        <p>Cyberbully and revealing privacy information are <b>NOT</b> allowed in CONFIDING. Any of the following behavior is unacceptable:</p>
+        <ul>
+          <li>Offensive comments </li>
+          <li>Threats of violence</li>
+          <li>Stalking or following</li>
+          <li>Illegal purposes</li>
+          <li>Any kind of harassment</li>
+        </ul>
+        <br>
+        <p>Please make sure you're posting quality content and keep this place clean together. If you believe someone is violating the code of conduct, we ask that you report it by emailing tyh289@nyu.edu. Please include your name and a description of the incident, and we will get back to you ASAP.</p>
+      </div>
+
+    </section>
+    <section id='sec-4'>
+      <div class='content' >
+        <form action='all.html'>
+        <h1>Information Form</h1>
+        <!--
+        <p>latitude: <span id="latitude"></span></p>
+        <p>longitude: <span id="longitude"></span></p>
+        <button id="geolocate">Get Your Location</button>
+        -->
+        <br>
+        <label for="name">Your name</label>
+        <br>
+        <input id="name" type="text"  required/>
+        <br>
+        <label for="confession">What's on your mind?</label>
+        <br>
+        <input id="confession" type="text" maxlength="500" style="width: 300px; height:300px"  required/>
+        <br>
+        <input id="geolocate" type="checkbox" required name="terms"> I accept the site get my current location</u></p>
+        <br>
+        <input type="submit" id="submit" value="Submit!"/>
+        </form>
+    </div>
+    </section>
+  </div>
 
 
   <script src="main.js" type="text/javascript"></script>
+  <script type="text/javascript" src=" skrollr.js"></script>
+	<script type="text/javascript">
+	var s = skrollr.init();
+	</script>
 </body>
 </html>
