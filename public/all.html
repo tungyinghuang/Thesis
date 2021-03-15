@@ -5,17 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" type="text/css" title="Cool stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 <body>
-  <h1>Online Confession Room</h1>
+  <h2>Beans around you</h2>
 
-  <a href="/#form"><button>New post</button></a>
+  <a href="/#form"><button>New Bean</button></a>
+  <p id="demo"></p>
   <div id='wrapper'>
   </div>
 
 
   <script >
     let lat, long, timestamp, getdistance, gettime;
+    let n=0;
 
     if('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) =>{
@@ -23,6 +27,7 @@
         long = position.coords.longitude;
         timestamp = Date.now()
         getData();
+
       //  console.log(lat,long)
       });
     } else {
@@ -37,35 +42,44 @@
       for(item of data){
         getdistance = getDistanceFromLatLonInKm(lat, long,`${item.lat}`,`${item.long}`).toFixed(2);
         gettime = timeDifference(timestamp, `${item.timestamp}`)
-        //console.log(`${item.timestamp}`,gettime)
 
-        if ( getdistance<=1 && gettime<=24){
-          const root = document.createElement('div')
+        if ( getdistance<=1 && gettime<24){
+          const root = document.createElement("div")
           const name = document.createElement('div')
-          name.textContent = `name: ${item.name}`
+          name.textContent = ` ${item.name}`
+
           const distance = document.createElement('div')
           distance.textContent = "distance:" + getdistance +"Km"
+
           const date = document.createElement('div')
           const dateString = new Date(item.timestamp).toLocaleString()
           date.textContent = dateString
+
           const confession = document.createElement('div')
           confession.textContent = `confession:${item.confess}`
 
           root.append(name, distance, date, confession)
-          root.setAttribute("id", "post")
+          root.setAttribute("id", "post"+n)
+          root.setAttribute("class", "post")
+          name.setAttribute("class",'name')
+          distance.setAttribute('class','distance')
+          confession.setAttribute('class','confession')
+          date.setAttribute('class','date')
 
           document.getElementById('wrapper').append(root);
-          console.log('read')
+          n=n+1
 
+          root.onclick = function() {
+
+            var p = document.createElement("P");
+            var x = document.createTextNode("X");
+            p.appendChild(getdistance);
+            this.appendChild(p);
+            this.onclick = function() {}
+          }
         }
       }
     };
-
-
-
-
-
-
 
     //calculate distance
 
@@ -91,9 +105,9 @@
     function timeDifference(timestamp1, timestamp2) {
       var difference = timestamp1 - timestamp2;
       var hoursDifference = Math.floor(difference/1000/60/60);
-
-    return hoursDifference;
+      return hoursDifference;
 }
+
 
   </script>
 </body>
