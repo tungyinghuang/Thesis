@@ -8,107 +8,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
-<body>
-  <h2>Beans around you</h2>
-
-  <a href="/#form"><button>New Bean</button></a>
-  <p id="demo"></p>
-  <div id='wrapper'>
+<body style="overflow:hidden">
+  <div id='upper-right'>
+    <div id='number'></div>
+    <a href="/"><button class="button">Create New Bean</button></a>
+  </div>
+  <div id='wrapper-container'>
+    <div id='wrapper'></div>
   </div>
 
+  <script src="all.js" async></script>
 
-  <script >
-    let lat, long, timestamp, getdistance, gettime;
-    let n=0;
-
-    if('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) =>{
-        lat = position.coords.latitude;
-        long = position.coords.longitude;
-        timestamp = Date.now()
-        getData();
-
-      //  console.log(lat,long)
-      });
-    } else {
-      console.log("geolocation not availabel")
-    }
-
-
-    async function getData(){
-      const response = await fetch('/api');
-      const data = await response.json();
-
-      for(item of data){
-        getdistance = getDistanceFromLatLonInKm(lat, long,`${item.lat}`,`${item.long}`).toFixed(2);
-        gettime = timeDifference(timestamp, `${item.timestamp}`)
-
-        if ( getdistance<=1 && gettime<24){
-          const root = document.createElement("div")
-          const name = document.createElement('div')
-          name.textContent = ` ${item.name}`
-
-          const distance = document.createElement('div')
-          distance.textContent = "distance:" + getdistance +"Km"
-
-          const date = document.createElement('div')
-          const dateString = new Date(item.timestamp).toLocaleString()
-          date.textContent = dateString
-
-          const confession = document.createElement('div')
-          confession.textContent = `confession:${item.confess}`
-
-          root.append(name, distance, date, confession)
-          root.setAttribute("id", "post"+n)
-          root.setAttribute("class", "post")
-          name.setAttribute("class",'name')
-          distance.setAttribute('class','distance')
-          confession.setAttribute('class','confession')
-          date.setAttribute('class','date')
-
-          document.getElementById('wrapper').append(root);
-          n=n+1
-
-          root.onclick = function() {
-
-            var p = document.createElement("P");
-            var x = document.createTextNode("X");
-            p.appendChild(getdistance);
-            this.appendChild(p);
-            this.onclick = function() {}
-          }
-        }
-      }
-    };
-
-    //calculate distance
-
-       function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
-        var R = 6371; // Radius of the earth in km
-        var dLat = deg2rad(lat2-lat1);  // deg2rad below
-        var dLon = deg2rad(lon2-lon1);
-        var a =
-          Math.sin(dLat/2) * Math.sin(dLat/2) +
-          Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-          Math.sin(dLon/2) * Math.sin(dLon/2)
-          ;
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        var d = R * c; // Distance in km
-        return d;
-      }
-
-      function deg2rad(deg) {
-        return deg * (Math.PI/180)
-      }
-    //calculate timeout
-
-    function timeDifference(timestamp1, timestamp2) {
-      var difference = timestamp1 - timestamp2;
-      var hoursDifference = Math.floor(difference/1000/60/60);
-      return hoursDifference;
-}
-
-
-  </script>
 </body>
 </html>
