@@ -1,3 +1,4 @@
+
 //submit
 var lat, long, timestamp;
 document.getElementById('submit').addEventListener('click', async event => {
@@ -13,19 +14,36 @@ document.getElementById('submit').addEventListener('click', async event => {
   };
   const response = await fetch('/api', options);
   const json = await response.json();
-  console.log(json)
+
 })
 //get geolocation
 document.getElementById('geolocate').addEventListener('click', async event => {
   if ("geolocation" in navigator) {
     console.log("geolocation availabel");
     navigator.geolocation.getCurrentPosition(async position =>{
+      console.log(position.coords.latitude);
       lat = position.coords.latitude;
       long = position.coords.longitude;
-      document.getElementById("latitude").textContent=lat;
-      document.getElementById("longitude").textContent=long;
-    });
+    }, error);
   }else{
       console.log("geolocation not availabel")
     }
 })
+
+//scroll animation
+$(function() {
+  $('a[href*=#]').on('click', function(e) {
+    e.preventDefault();
+    $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 500, 'linear');
+  });
+});
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+  $("form").on('submit', function (e) {
+   //ajax call here
+  alert("Fail to get your location")
+   //stop form submission
+   e.preventDefault();
+});
+}

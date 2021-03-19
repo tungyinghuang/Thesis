@@ -1,222 +1,249 @@
-@import url('https://fonts.googleapis.com/css?family=Fira+Mono:400');
+@import url("https://fonts.googleapis.com/css?family=Fira+Mono:400");
 
-*
-{
-  margin:0;
-  padding:0;
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  font-family: 'Fira Mono', monospace;
-  color:white;
+  font-family: "Fira Mono", monospace;
+  color: white;
 }
 
-*::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	border-radius: 10px;
-	background-color: black;
+*::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: black;
 }
 
-*::-webkit-scrollbar
-{
-	width: 12px;
-	background-color: black;
+*::-webkit-scrollbar {
+  width: 12px;
+  background-color: black;
 }
 
-*::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #242424;
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #242424;
 }
-body{
-  margin:0;
-  background-color:black;
+body {
+  margin: 0;
+  background-color: black;
 }
-h1{
+h1 {
   font-size: 75px;
   letter-spacing: 0px;
   animation: glitch 1s linear infinite;
 }
-canvas{
+canvas {
   display: block;
-  position:fixed;
+  position: fixed;
 }
-input{
-  color:black;
-}
-.button{
+input {
   color: black;
 }
-.container{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  display:flex;
+.button {
+  color: black;
 }
-.container section{
-  min-width:100%;
-  height:auto;
-  display:flex;
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+}
+.container section {
+  min-width: 100%;
+  height: auto;
+  display: flex;
   justify-content: center;
   align-items: center;
-  height:100vh;
+  height: 100vh;
 }
-.content{
-  padding:0 15%;
+.content {
+  padding: 0 15%;
 }
-.content ul{
-  padding:20px 20px;
+.content ul {
+  padding: 20px 20px;
 }
 
-.title{
+.title {
   font-size: 150px;
   letter-spacing: 7px;
   animation: glitch 1s linear infinite;
 }
-@keyframes glitch{
-  2%,64%{
-    transform: translate(2px,0) skew(0deg);
+@keyframes glitch {
+  2%,
+  64% {
+    transform: translate(2px, 0) skew(0deg);
   }
-  4%,60%{
-    transform: translate(-2px,0) skew(0deg);
+  4%,
+  60% {
+    transform: translate(-2px, 0) skew(0deg);
   }
-  62%{
-    transform: translate(0,0) skew(5deg);
+  62% {
+    transform: translate(0, 0) skew(5deg);
   }
 }
 
 .title:before,
-.title:after{
+.title:after {
   content: attr(title);
   position: absolute;
   left: 0;
 }
 
-.title:before{
+.title:before {
   animation: glitchTop 1s linear infinite;
   clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
 }
 
-@keyframes glitchTop{
-  2%,64%{
-    transform: translate(2px,-2px);
+@keyframes glitchTop {
+  2%,
+  64% {
+    transform: translate(2px, -2px);
   }
-  4%,60%{
-    transform: translate(-2px,2px);
+  4%,
+  60% {
+    transform: translate(-2px, 2px);
   }
-  62%{
-    transform: translate(13px,-1px) skew(-13deg);
+  62% {
+    transform: translate(13px, -1px) skew(-13deg);
   }
 }
 
-.title:after{
+.title:after {
   animation: glitchBotom 1.5s linear infinite;
   clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
   -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
 }
 
-@keyframes glitchBotom{
-  2%,64%{
-    transform: translate(-2px,0);
+@keyframes glitchBotom {
+  2%,
+  64% {
+    transform: translate(-2px, 0);
   }
-  4%,60%{
-    transform: translate(-2px,0);
+  4%,
+  60% {
+    transform: translate(-2px, 0);
   }
-  62%{
-    transform: translate(-22px,5px) skew(21deg);
+  62% {
+    transform: translate(-22px, 5px) skew(21deg);
   }
 }
-.arrow {
-  cursor: pointer;
-  height: 120px;
-  left: 90%;
-
-  top: 90%;
-  transform: translateX(-50%) translateY(-50%);
-  transition: transform 0.1s;
-  width: 80px;
-}
-.arrow-top, .arrow-bottom {
-  background-color: #666;
-  height: 4px;
-  left: -5px;
+.demo a {
   position: absolute;
-  top: 50%;
-  width: 100%;
+  bottom: 50%;
+  left: 85%;
+  z-index: 2;
+  display: inline-block;
+  text-align:right;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: opacity 0.3s;
+  -webkit-animation: sd05 1.5s infinite;
+  animation: sd05 1.5s infinite;
 }
-.arrow-top:after, .arrow-bottom:after {
-  background-color: #fff;
-  content: "";
-  height: 100%;
+.demo a:hover {
+  opacity: 0.5;
+}
+#sec-1 span {
   position: absolute;
-  top: 0;
-  transition: all 0.15s;
-}
-.arrow-top {
-  transform: rotate(45deg);
-  transform-origin: bottom right;
-}
-.arrow-top:after {
+  top: 25%;
   left: 100%;
-  right: 0;
-  transition-delay: 0s;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  -webkit-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+  -webkit-animation: sdb05 1.5s infinite;
+  animation: sdb05 1.5s infinite;
+  box-sizing: border-box;
 }
-.arrow-bottom {
-  transform: rotate(-45deg);
-  transform-origin: top right;
+@-webkit-keyframes sd05 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
-.arrow-bottom:after {
-  left: 0;
-  right: 100%;
-  transition-delay: 0.15s;
+@keyframes sd05 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
-.arrow:hover .arrow-top:after {
-  left: 0;
-  transition-delay: 0.15s;
+
+@-webkit-keyframes sdb05 {
+  0% {
+    -webkit-transform: rotate(-135deg) translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotate(-135deg) translate(-20px, 20px);
+    opacity: 0;
+  }
 }
-.arrow:hover .arrow-bottom:after {
-  right: 0;
-  transition-delay: 0s;
+@keyframes sdb05 {
+  0% {
+    transform: rotate(-135deg) translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-135deg) translate(-20px, 20px);
+    opacity: 0;
+  }
 }
-.arrow:active {
-  transform: translateX(-50%) translateY(-50%) scale(0.5);
-}
-#upper-right{
-  float:right;
-  width:40vw;;
+
+#upper-right {
+  float: right;
+  width: 40vw;
   text-align: right;
-  height:80vh;
+  height: 80vh;
 
   padding: 100px 100px;
 }
 
-#wrapper-container{
-  margin-left:auto;margin-right:auto;width:80vw;
-
+#wrapper-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80vw;
 }
-#wrapper{
+#wrapper {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   align-items: center;
   max-width: 50%;
-  height:100vh;;
+  height: 100vh;
   overflow-x: hidden;
   overflow-y: scroll;
-
-
 }
 .post {
   cursor: pointer;
-  position:relative;
-  width:400px;
-  height:auto;
-  padding:10px 0;
-
-
+  position: relative;
+  width: 400px;
+  height: auto;
+  padding: 10px 0;
 }
-.name{
-  color:pink;
-  font-size: 25px
+.name {
+  color: #00FF00;
+  font-size: 25px;
 }

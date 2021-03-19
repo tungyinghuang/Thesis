@@ -6,6 +6,7 @@
   <title>Beans</title>
   <link rel="stylesheet" type="text/css" title="Cool stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/p5@1.3.0/lib/p5.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 
 <body>
@@ -17,7 +18,9 @@
         <div class='title' title="BEANS">BEANS</div>
         <div class='title' title="BEANS">BEANS</div>
       </div>
-
+    <div class='demo'>
+      <a href="#form"><span></span>Scroll<br>to<br>continue</a>
+    </div>
     </section>
     <section>
       <div class='content' id='sec-2'>
@@ -33,7 +36,6 @@
         <br>
         <p>BEANS wants to create a hidden place that makes you feel comfortable pouring out your emotion and stories. You don't know who's the listeners and nobody knows you're here. Just leave your story and let the time take it away.
           You'll feel better if you get the matter off your chest.</p>
-
 
       </div>
 
@@ -73,9 +75,9 @@
         <br>
         <input id="confession" type="text" maxlength="500" style="width: 300px; height:300px"  required/>
         <br>
-        <input id="geolocate" type="checkbox" required name="terms"> I accept the site get my current location</u></p>
+        <input id="geolocate" type="checkbox" required name="terms" > I accept the site get my current location</u></p>
         <br>
-        <input type="submit" id="submit" value="Submit!"/>
+        <input type="submit" id="submit" value="Submit!" onsubmit="return makeSearch()"/>
         </form>
     </div>
     </section>
